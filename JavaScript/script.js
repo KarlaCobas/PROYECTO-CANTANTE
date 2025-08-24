@@ -14,39 +14,6 @@
             });
         });
 
-        const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const formElements = contactForm.elements;
-            for (let i = 0; i < formElements.length; i++) {
-                if (formElements[i].type !== 'submit') {
-                    formElements[i].value = '';
-                }
-            }
-            
-            const successMessage = document.createElement('div');
-            successMessage.style.position = 'fixed';
-            successMessage.style.top = '50%';
-            successMessage.style.left = '50%';
-            successMessage.style.transform = 'translate(-50%, -50%)';
-            successMessage.style.backgroundColor = '#824d69';
-            successMessage.style.color = '#fae5d8';
-            successMessage.style.padding = '1.5rem 2.5rem';
-            successMessage.style.borderRadius = '10px';
-            successMessage.style.zIndex = '2000';
-            successMessage.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
-            successMessage.style.fontSize = '1.1rem';
-            successMessage.style.fontWeight = '600';
-            successMessage.textContent = '¡Mensaje enviado con éxito!';
-            
-            document.body.appendChild(successMessage);
-            
-            setTimeout(() => {
-                document.body.removeChild(successMessage);
-            }, 3000);
-        });
-
         const observerOptions = {
             root: null,
             rootMargin: '0px',
