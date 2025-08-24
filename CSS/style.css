@@ -15,7 +15,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', 'Segoe UI';
+    font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     scroll-behavior: smooth;
 }
 
@@ -79,7 +79,7 @@ body {
     }
 }
 
-/* Header */
+/* Header  */
 header {
     position: fixed;
     top: 0;
@@ -169,19 +169,34 @@ header::after {
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: var(--color-2);
+    color: var(--color-1);
     text-decoration: none;
     display: flex;
     align-items: center;
     letter-spacing: 1px;
+    position: relative;
+}
+
+.logo::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50px;
+    z-index: -1;
+    opacity: 0.7;
+    filter: blur(8px);
+    animation: pulse 3s ease-in-out infinite;
 }
 
 .logo i {
     margin-right: 0.5rem;
-    color: var(--color-3);
-    font-size: 1.5rem;
+    color: var(--color-2);
+    font-size: 1.8rem;
 }
 
 .nav-menu {
@@ -190,7 +205,7 @@ header::after {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
+    width: 60%;
     height: 100vh;
     background: linear-gradient(135deg, var(--color-5), var(--color-6));
     padding: 7rem 2rem 2rem;
@@ -206,9 +221,9 @@ header::after {
 .nav-menu a {
     color: var(--color-1);
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1em;
     margin: .5rem 0;
-    padding: 0.2rem 0;
+    padding: 0.8rem 0;
     border-bottom: 1px solid var(--color-4);
     transition: var(--transition);
     position: relative;
@@ -225,20 +240,40 @@ header::after {
     display: block;
     cursor: pointer;
     z-index: 1001;
+    width: 30px;
+    height: 30px;
+    position: relative;
 }
 
 .hamburger span {
     display: block;
-    width: 25px;
+    width: 100%;
     height: 3px;
     margin: 5px 0;
     background-color: var(--color-2);
     transition: var(--transition);
     border-radius: 3px;
+    position: absolute;
+    left: 0;
+    transform-origin: center;
+}
+
+.hamburger span:nth-child(1) {
+    top: 0;
+}
+
+.hamburger span:nth-child(2) {
+    top: 10px;
+}
+
+.hamburger span:nth-child(3) {
+    top: 20px;
 }
 
 .hamburger.active span:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -1.5px;
 }
 
 .hamburger.active span:nth-child(2) {
@@ -246,7 +281,9 @@ header::after {
 }
 
 .hamburger.active span:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
+    transform: rotate(-45deg);
+    top: 50%;
+    margin-top: -1.5px;
 }
 
 @media (min-width: 992px) {
@@ -273,7 +310,7 @@ header::after {
     }
 }
 
-/* main section */
+/* main section*/
 .main {
     height: 100vh;
     background: linear-gradient(135deg, var(--color-5), var(--color-6));
@@ -294,6 +331,7 @@ header::after {
     left: 0;
     width: 100%;
     height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
     background-size: cover;
     background-position: center;
     opacity: 0.15;
@@ -365,6 +403,18 @@ header::after {
     width: 150px;
     height: 150px;
     animation: pulse 8s ease-in-out infinite;
+}
+
+.main-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(90deg, var(--color-3), var(--color-2), var(--color-3));
+    background-size: 200% 100%;
+    animation: shimmer 10s linear infinite;
+    z-index: 1;
 }
 
 .main-particles {
@@ -486,7 +536,6 @@ header::after {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 0.9rem;
-    width: 100%;
 }
 
 .btn-primary {
@@ -531,6 +580,7 @@ header::after {
     }
 }
 
+/* Secciones */
 section {
     padding: 5rem 2rem;
     max-width: 1200px;
@@ -567,7 +617,7 @@ section {
     }
 }
 
-/* About Section*/
+/* Sobre mí */
 .about {
     background-color: var(--color-5);
     border-radius: 20px;
@@ -891,181 +941,139 @@ section {
     animation: fadeIn 1s ease;
 }
 
-.music-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    margin-top: 3rem;
-}
-
-.album-card {
+.music-player {
     background-color: var(--color-5);
     border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: var(--transition);
+    padding: 2rem;
+    margin-top: 3rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.album-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+.music-player-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
-.album-image-container {
-    position: relative;
-    overflow: hidden;
-    height: 300px;
-}
-
-.album-image {
-    width: 100%;
-    height: 100%;
+.music-player-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
     object-fit: cover;
+    margin-right: 1.5rem;
+}
+
+.music-player-info h3 {
+    font-size: 1.5rem;
+    color: var(--color-2);
+    margin-bottom: 0.3rem;
+}
+
+.music-player-info p {
+    color: var(--color-1);
+    font-size: 1rem;
+}
+
+.music-player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.music-player-btn {
+    background: none;
+    border: none;
+    color: var(--color-1);
+    font-size: 1.5rem;
+    margin-right: 1.5rem;
+    cursor: pointer;
     transition: var(--transition);
 }
 
-.album-card:hover .album-image {
-    transform: scale(1.05);
+.music-player-btn:hover {
+    color: var(--color-2);
 }
 
-.album-play-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+.music-player-btn.play {
+    background-color: var(--color-3);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    transition: var(--transition);
+    font-size: 1.2rem;
 }
 
-.album-card:hover .album-play-overlay {
+.music-player-btn.play:hover {
+    background-color: var(--color-4);
+}
+
+.music-list {
+    margin-top: 2rem;
+}
+
+.music-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+    transition: var(--transition);
+    margin-bottom: 0.5rem;
+}
+
+.music-item:hover {
+    background-color: rgba(130, 77, 105, 0.2);
+}
+
+.music-item-number {
+    width: 30px;
+    color: var(--color-2);
+    font-weight: 600;
+    text-align: center;
+    margin-right: 1rem;
+}
+
+.music-item-info {
+    flex-grow: 1;
+}
+
+.music-item-title {
+    color: var(--color-1);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.music-item-artist {
+    color: var(--color-2);
+    font-size: 0.9rem;
+}
+
+.music-item-duration {
+    color: var(--color-2);
+    margin-right: 1rem;
+}
+
+.music-item-btn {
+    background: none;
+    border: none;
+    color: var(--color-1);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    opacity: 0;
+}
+
+.music-item:hover .music-item-btn {
     opacity: 1;
 }
 
-.album-play-button {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: rgba(130, 77, 105, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--color-1);
-    font-size: 2rem;
-    transition: var(--transition);
-}
-
-.album-play-button:hover {
-    background: var(--color-3);
-    transform: scale(1.1);
-}
-
-.album-info {
-    padding: 2rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.album-title {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+.music-item-btn:hover {
     color: var(--color-2);
-    font-weight: 700;
 }
 
-.album-year {
-    color: var(--color-3);
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-.album-tracks {
-    margin-bottom: 2rem;
-    flex-grow: 1;
-}
-
-.track {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--color-4);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--color-1);
-    transition: var(--transition);
-}
-
-.track:hover {
-    padding-left: 0.5rem;
-}
-
-.track:last-child {
-    border-bottom: none;
-}
-
-.track-title {
-    display: flex;
-    align-items: center;
-}
-
-.track-number {
-    margin-right: 1rem;
-    color: var(--color-3);
-    font-weight: 600;
-}
-
-.track-duration {
-    color: var(--color-2);
-    font-weight: 500;
-}
-
-.btn-play {
-    background: linear-gradient(135deg, var(--color-4), var(--color-3));
-    color: var(--color-1);
-    border: none;
-    padding: 0.8rem 1.8rem;
-    border-radius: 50px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.9rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.btn-play i {
-    margin-right: 0.8rem;
-}
-
-.btn-play:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-}
-
-@media (min-width: 768px) {
-    .music-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 992px) {
-    .music-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Videos*/
+/* Videos - Modificado para no usar cards */
 .videos {
     animation: fadeIn 1s ease;
     text-align: center;
@@ -1317,266 +1325,6 @@ section {
 @media (min-width: 768px) {
     .gallery-grid {
         grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-/* Contacto*/
-.contact {
-    animation: fadeIn 1s ease;
-}
-
-.contact-container {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    margin-top: 3rem;
-    background: linear-gradient(135deg, var(--color-5), var(--color-6));
-}
-
-.contact-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.1;
-    z-index: 0;
-}
-
-.contact-content {
-    position: relative;
-    z-index: 1;
-    padding: 4rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.contact-intro {
-    max-width: 700px;
-    margin: 0 auto 3rem;
-}
-
-.contact-intro h3 {
-    font-size: 2rem;
-    color: var(--color-2);
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.contact-intro p {
-    color: var(--color-1);
-    line-height: 1.8;
-    font-size: 1.1rem;
-}
-
-.contact-visual {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 4rem;
-}
-
-.contact-image-container {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 5px solid var(--color-3);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-}
-
-.contact-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.contact-image-glow {
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--color-3), transparent 70%);
-    opacity: 0.4;
-    animation: pulse 4s ease-in-out infinite;
-}
-
-.contact-info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 4rem;
-}
-
-.contact-item {
-    background-color: rgba(24, 0, 24, 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 2rem;
-    width: 250px;
-    transition: var(--transition);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(223, 182, 178, 0.2);
-}
-
-.contact-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    background-color: rgba(24, 0, 24, 0.7);
-}
-
-.contact-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--color-3), var(--color-4));
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto 1.5rem;
-    font-size: 1.8rem;
-    color: var(--color-1);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.contact-item h4 {
-    color: var(--color-2);
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-.contact-item p {
-    color: var(--color-1);
-    margin-bottom: 1rem;
-    line-height: 1.6;
-}
-
-.contact-item a {
-    color: var(--color-3);
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    transition: var(--transition);
-}
-
-.contact-item a:hover {
-    color: var(--color-2);
-}
-
-.contact-item a i {
-    margin-left: 0.5rem;
-    transition: var(--transition);
-}
-
-.contact-item a:hover i {
-    transform: translateX(5px);
-}
-
-.contact-decoration {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--color-3), transparent 70%);
-    opacity: 0.1;
-    z-index: 0;
-}
-
-.contact-decoration-1 {
-    top: 10%;
-    left: 5%;
-    width: 200px;
-    height: 200px;
-}
-
-.contact-decoration-2 {
-    bottom: 10%;
-    right: 5%;
-    width: 300px;
-    height: 300px;
-}
-
-.contact-decoration-3 {
-    top: 50%;
-    right: 20%;
-    width: 150px;
-    height: 150px;
-}
-
-@media (min-width: 576px) {
-    .contact-image-container {
-        width: 250px;
-        height: 250px;
-    }
-    .contact-image-glow {
-        width: 290px;
-        height: 290px;
-        top: -20px;
-        left: -20px;
-    }
-}
-
-@media (min-width: 768px) {
-    .contact-info {
-        gap: 3rem;
-    }
-    .contact-item {
-        width: 280px;
-    }
-}
-
-@media (min-width: 992px) {
-    .contact-content {
-        padding: 5rem 3rem;
-    }
-    .contact-intro h3 {
-        font-size: 2.5rem;
-    }
-    .contact-image-container {
-        width: 300px;
-        height: 300px;
-    }
-    .contact-image-glow {
-        width: 340px;
-        height: 340px;
-        top: -20px;
-        left: -20px;
-    }
-    .contact-info {
-        gap: 4rem;
-    }
-    .contact-item {
-        width: 300px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .contact-content {
-        padding: 6rem 4rem;
-    }
-    .contact-intro h3 {
-        font-size: 3rem;
-    }
-    .contact-intro p {
-        font-size: 1.2rem;
-    }
-    .contact-image-container {
-        width: 350px;
-        height: 350px;
-    }
-    .contact-image-glow {
-        width: 390px;
-        height: 390px;
-        top: -20px;
-        left: -20px;
     }
 }
 
