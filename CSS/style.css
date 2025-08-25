@@ -25,6 +25,77 @@ body {
     overflow-x: hidden;
 }
 
+/* Estilos específicos para iPhone */
+@supports (-webkit-touch-callout: none) {
+    /* Header */
+    header {
+        /* Prevenir el parpadeo en iOS */
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        /* Solucionar problemas de renderizado */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Nav-menu */
+    .nav-menu {
+        /* Prevenir el parpadeo en iOS */
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        /* Solucionar problemas de renderizado */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        /* Forzar la creación de una nueva capa de composición */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        /* Optimización para el scroll */
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Hamburger */
+    .hamburger {
+        /* Prevenir el parpadeo en iOS */
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        /* Solucionar problemas de renderizado */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        /* Forzar la creación de una nueva capa de composición */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    
+    /* Overlay */
+    .nav-overlay {
+        /* Prevenir el parpadeo en iOS */
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        /* Solucionar problemas de renderizado */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        /* Forzar la creación de una nueva capa de composición */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    
+    /* Optimización general para iPhone */
+    * {
+        /* Prevenir el zoom al hacer doble tap */
+        -webkit-touch-callout: none;
+        /* Prevenir el resaltado al tocar */
+        -webkit-tap-highlight-color: transparent;
+        /* Prevenir el copiado/pegado */
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    /* Permitir la selección en elementos de texto */
+    p, h1, h2, h3, h4, h5, h6, a, span, div {
+        -webkit-user-select: text;
+        user-select: text;
+    }
+}
+
 /* Animaciones */
 @keyframes fadeIn {
     from {
